@@ -5,9 +5,9 @@ import time
 
 #URL = input("Enter the Url:")
 #URL = URL.strip()
-#CurPrice = input('Enter the current price:')
-CurPrice = float(34000)
-
+CurPrice = input('Enter the current price:')
+CurPrice = float(CurPrice)
+Your_email = input("Enter the Url:")
 
 URL = 'https://www.amazon.in/Test-Exclusive-608/dp/B07HGBMJT6/ref=sr_1_1?keywords=oneplus&qid=1562392047&s=gateway&smid=A35FCS7U51TK3C&sr=8-1'
 header = {"user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0'}
@@ -43,7 +43,8 @@ def send_mail():
     server.starttls()
     server.ehlo()
     
-    server.login('harshvai07@gmail.com','pmypizfrsvbbzfrq')
+    server.login(<"the id generating email">,<"your Key">)
+    #look for documentation
     
     subject = 'Price'
     
@@ -51,7 +52,7 @@ def send_mail():
     
     msg = f"Subject : {subject}\n\n{body}"
     
-    server.sendmail('harshvai07@gmail.com','harshapj2@hotmail.com',msg)
+    server.sendmail('harshvai07@gmail.com',Your_email,msg)
     
     print('E-MAIL HAS BEEN SENT')
     
