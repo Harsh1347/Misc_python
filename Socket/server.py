@@ -1,5 +1,8 @@
 import socket 
- 
+import time
+import pickle
+
+
 HEADERSIZE = 10
 
 s= socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -10,9 +13,11 @@ while True :
     clientsocket,address=s.accept() 
     print(f"You have established connection with {address}")
     
-    msg  = 'Welcome to the server'
-    print(f'{len(msg):<{HEADERSIZE}}'+msg)
+    d ={1:"hey",2:"There"}
+
+    msg = pickle.dumps(d)
+    msg= bytes(f'{len(msg):<{HEADERSIZE}}','utf-8')+msg
     
-    clientsocket.send(bytes(msg,"utf-8"))
+    clientsocket.send(msg)
     
     
