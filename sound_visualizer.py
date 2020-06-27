@@ -36,6 +36,7 @@ ax2.set_xlim(20,RATE/2)
 ax.set_xlim(0,CHUNK)
 ax.set_title("AUDIO WAVE")
 ax2.set_title("FREQUENCY")
+plt.plot()
 while(True):
     data = stream.read(CHUNK)
     data_int = struct.unpack(str(CHUNK)+'h',data)

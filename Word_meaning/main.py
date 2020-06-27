@@ -1,17 +1,11 @@
-import requests
-import speech_recognition as sr 
-from speech import search_word
-from cred import api_key
+from speech import search_word,get_meaning
+import tkinter as tk 
+import streamlit as st
 
-word = search_word()
-apikey = api_key()
-url = f"https://wordsapiv1.p.rapidapi.com/words/{word}/definitions/"
+st.title("word meaning")
 
-headers = {
-    'x-rapidapi-host': "wordsapiv1.p.rapidapi.com",
-    'x-rapidapi-key': apikey
-    }
-
-response = requests.request("GET", url, headers=headers)
-
-print(response.json()['definitions'])
+if st.button("Say a word"):
+    st.text("Listening...")
+    word = search_word()
+    st.text(f"You said : {word}")
+    st.write(get_meaning(word))
