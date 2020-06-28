@@ -16,7 +16,12 @@ while(True):
     try:
         match_time = soup.find('span',class_ = "imso_mh__ft-mtch imso-medium-font imso_mh__ft-mtchc").text
     except:
-        match_time = soup.find('span',class_="liveresults-sports-immersive__game-minute").text
+        match_time = ""
+
+    try:
+        half_time = soup.find('div',class_="imso_mh__lv-m-stts-cont").text
+    except:
+        half_time =""
     
     
     score = soup.find('div',class_="imso_mh__ma-sc-cont").text
@@ -35,7 +40,7 @@ while(True):
             timeout = 10)
         break
 
-    if match_time == "Half-time":
+    if half_time == "Half-time":
         team1 = score[0]
         team2 = score[-1]
         notification.notify(
@@ -45,11 +50,13 @@ while(True):
             timeout = 10)
         time.sleep(600)
 
-    if count ==0:
+    if count == 0:
         team1 = score[0]
         team2 = score[-1]
         count+=1
+        print("Initial")
         notification.notify(
+            
             title = "Score Update",
             message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {match_time} mins ",
             app_icon = "data//football.ico",
@@ -61,6 +68,7 @@ while(True):
         if team1 != score[0] or team2 !=score[-1]:
             team1 = score[0]
             team2 = score[-1]
+            print("SCORE")
             notification.notify(
                 title = "Score Update",
                 message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {match_time} mins ",
