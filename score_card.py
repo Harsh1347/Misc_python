@@ -23,7 +23,8 @@ while(True):
     except:
         half_time =""
     
-    
+    live_time = soup.find('span',class_="liveresults-sports-immersive__game-minute").text
+
     score = soup.find('div',class_="imso_mh__ma-sc-cont").text
     team_name = []
     names = soup.find_all('div',class_="ellipsisize liveresults-sports-immersive__team-name-width kno-fb-ctx")
@@ -54,13 +55,13 @@ while(True):
         team1 = score[0]
         team2 = score[-1]
         count+=1
-        print("Initial")
+        #print("Initial")
         notification.notify(
             
             title = "Score Update",
-            message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {match_time} mins ",
+            message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {live_time} mins ",
             app_icon = "data//football.ico",
-            timeout = 5
+            timeout = 10
 
             )
     else:
@@ -68,12 +69,12 @@ while(True):
         if team1 != score[0] or team2 !=score[-1]:
             team1 = score[0]
             team2 = score[-1]
-            print("SCORE")
+            #print("SCORE")
             notification.notify(
                 title = "Score Update",
-                message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {match_time} mins ",
+                message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {live_time} mins ",
                 app_icon = "data//football.ico",
-                timeout = 5
+                timeout = 10
 
                     )
     time.sleep(10)
