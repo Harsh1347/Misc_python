@@ -23,8 +23,10 @@ while(True):
     except:
         half_time =""
     
-    live_time = soup.find('span',class_="liveresults-sports-immersive__game-minute").text
-
+    try:
+        live_time = soup.find('span',class_="liveresults-sports-immersive__game-minute").text
+    except:
+        live_time = ""
     score = soup.find('div',class_="imso_mh__ma-sc-cont").text
     team_name = []
     names = soup.find_all('div',class_="ellipsisize liveresults-sports-immersive__team-name-width kno-fb-ctx")
