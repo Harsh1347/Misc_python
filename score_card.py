@@ -5,7 +5,7 @@ from plyer import notification
 
 team = input("Enter the team name : ").lower().split()
 team = "+".join(team)
-print(team)
+team = "+".join(team)
 count = 0
 while(True):
     URL = f"https://www.google.com/search?q={team}"
@@ -35,8 +35,8 @@ while(True):
         team1 = score[0]
         team2 = score[-1]
         notification.notify(
-            title = "Score Update",
-            message = f"FULL-TIME \n{team_name[0]} {team1} - {team2} {team_name[1]}",
+            title = "FULL-TIME",
+            message = f"{team_name[0]} {team1} - {team2} {team_name[1]}",
             app_icon = "data//football.ico",
             timeout = 10)
         break
@@ -45,8 +45,8 @@ while(True):
         team1 = score[0]
         team2 = score[-1]
         notification.notify(
-            title = "Score Update",
-            message = f"HALF-TIME \n{team_name[0]} {team1} - {team2} {team_name[1]}",
+            title = "HALF-TIME",
+            message = f"{team_name[0]} {team1} - {team2} {team_name[1]}",
             app_icon = "data//football.ico",
             timeout = 10)
         time.sleep(600)
@@ -58,7 +58,7 @@ while(True):
         #print("Initial")
         notification.notify(
             
-            title = "Score Update",
+            title = "SCORE UPDATE",
             message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {live_time} mins ",
             app_icon = "data//football.ico",
             timeout = 10
@@ -71,7 +71,7 @@ while(True):
             team2 = score[-1]
             #print("SCORE")
             notification.notify(
-                title = "Score Update",
+                title = "GOAAALLL!!!!!",
                 message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {live_time} mins ",
                 app_icon = "data//football.ico",
                 timeout = 10
