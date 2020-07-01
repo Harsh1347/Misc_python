@@ -5,7 +5,6 @@ from plyer import notification
 
 team = input("Enter the team name : ").lower().split()
 team = "+".join(team)
-team = "+".join(team)
 count = 0
 while(True):
     URL = f"https://www.google.com/search?q={team}"
@@ -20,6 +19,7 @@ while(True):
 
     try:
         half_time = soup.find('div',class_="imso_mh__lv-m-stts-cont").text
+        #print(half_time)
     except:
         half_time =""
     
@@ -36,6 +36,7 @@ while(True):
     if match_time == "Full-time":
         team1 = score[0]
         team2 = score[-1]
+        print(f"Full Time: {team_name[0]} {team1} - {team2} {team_name[1]} ")
         notification.notify(
             title = "FULL-TIME",
             message = f"{team_name[0]} {team1} - {team2} {team_name[1]}",
@@ -43,21 +44,11 @@ while(True):
             timeout = 10)
         break
 
-    if half_time == "Half-time":
-        team1 = score[0]
-        team2 = score[-1]
-        notification.notify(
-            title = "HALF-TIME",
-            message = f"{team_name[0]} {team1} - {team2} {team_name[1]}",
-            app_icon = "data//football.ico",
-            timeout = 10)
-        time.sleep(600)
-
     if count == 0:
         team1 = score[0]
         team2 = score[-1]
         count+=1
-        #print("Initial")
+        print(f"Initial {team_name[0]} {team1} - {team2} {team_name[1]} at {live_time} mins ")
         notification.notify(
             
             title = "SCORE UPDATE",
@@ -66,12 +57,24 @@ while(True):
             timeout = 10
 
             )
+
+    if half_time == "Half-time":
+        team1 = score[0]
+        team2 = score[-1]
+        print(f"Half Time: {team_name[0]} {team1} - {team2} {team_name[1]} ")
+        notification.notify(
+            title = "HALF-TIME",
+            message = f"{team_name[0]} {team1} - {team2} {team_name[1]}",
+            app_icon = "data//football.ico",
+            timeout = 10)
+        time.sleep(300)
+
     else:
            
         if team1 != score[0] or team2 !=score[-1]:
             team1 = score[0]
             team2 = score[-1]
-            #print("SCORE")
+            print(f"GOAL : {team_name[0]} {team1} - {team2} {team_name[1]} at {live_time}")
             notification.notify(
                 title = "GOAAALLL!!!!!",
                 message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {live_time} mins ",
