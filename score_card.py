@@ -6,6 +6,7 @@ from plyer import notification
 team = input("Enter the team name : ").lower().split()
 team = "+".join(team)
 count = 0
+ht = False
 while(True):
     URL = f"https://www.google.com/search?q={team}"
     header = {"user-agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:67.0) Gecko/20100101 Firefox/67.0'}
@@ -45,6 +46,7 @@ while(True):
         break
 
     if count == 0:
+        ht = False  
         team1 = score[0]
         team2 = score[-1]
         count+=1
@@ -58,7 +60,8 @@ while(True):
 
             )
 
-    if half_time == "Half-time":
+    if half_time == "Half-time" and ht == False:
+        ht = True
         team1 = score[0]
         team2 = score[-1]
         print(f"Half Time: {team_name[0]} {team1} - {team2} {team_name[1]} ")
@@ -67,16 +70,27 @@ while(True):
             message = f"{team_name[0]} {team1} - {team2} {team_name[1]}",
             app_icon = "data//football.ico",
             timeout = 10)
-        time.sleep(300)
 
     else:
-           
-        if team1 != score[0] or team2 !=score[-1]:
+        ht = False  
+        if team1 < score[0] or team2 < score[-1]:
             team1 = score[0]
             team2 = score[-1]
             print(f"GOAL : {team_name[0]} {team1} - {team2} {team_name[1]} at {live_time}")
             notification.notify(
                 title = "GOAAALLL!!!!!",
+                message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {live_time} mins ",
+                app_icon = "data//football.ico",
+                timeout = 10
+
+                    )
+        elif team1 > score[0] or team2 > score[-1]:
+            ht = False  
+            team1 = score[0]
+            team2 = score[-1]
+            print(f"VARRED : {team_name[0]} {team1} - {team2} {team_name[1]} at {live_time}")
+            notification.notify(
+                title = "VARRED",
                 message = f"{team_name[0]} {team1} - {team2} {team_name[1]} \n {live_time} mins ",
                 app_icon = "data//football.ico",
                 timeout = 10
