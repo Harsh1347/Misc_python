@@ -22,8 +22,8 @@ pytesseract.pytesseract.tesseract_cmd = ".//Tesseract-OCR//tesseract.exe"
 
 BASE_URL = "https://slcm.manipal.edu/"
 
-USERNAME = '170907514'
-PASSWORD = 'xyzzyspoon!'
+USERNAME = '<USERNAME>'
+PASSWORD = '<PASSWORD>'
 
 browser = webdriver.Firefox()
 browser.get(BASE_URL)
