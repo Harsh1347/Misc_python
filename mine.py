@@ -68,19 +68,24 @@ if __name__ == "__main__":
     print(tabulate(user_board, headers=[i for i in range(len(user_board))],
                    showindex=True, tablefmt="pretty"))
     while True:
-        x, y = input("input coorinates as row,col:\n").split(",")
-        if (x, y) in dug:
-            print("Already mined")
-            continue
-        a = mining(user_board, board, int(x), int(y), dug)
-        if a == False:
-            print("GAME OVER")
-            print(tabulate(board, headers=[i for i in range(len(user_board))],
-                           showindex=True, tablefmt="pretty"))
-            break
+        user_input = input(
+            "input coorinates as row,col,'M'[optional] to mark as Mine:\n").split(",")
+        if len(user_input) == 3:
+            user_board[int(user_input[0])][int(user_input[1])] = "M"
         else:
-            for val in dug:
-                x, y = val
-                user_board[x][y] = board[x][y]
-            print(tabulate(user_board, headers=[i for i in range(len(user_board))],
-                           showindex=True, tablefmt="pretty"))
+            x, y = int(user_input[0]), int(user_input[1]),
+            if (x, y) in dug:
+                print("Already mined")
+                continue
+            a = mining(user_board, board, int(x), int(y), dug)
+            if a == False:
+                print("GAME OVER")
+                print(tabulate(board, headers=[i for i in range(len(user_board))],
+                               showindex=True, tablefmt="pretty"))
+                break
+            else:
+                for val in dug:
+                    x, y = val
+                    user_board[x][y] = board[x][y]
+                print(tabulate(user_board, headers=[i for i in range(len(user_board))],
+                               showindex=True, tablefmt="pretty"))
